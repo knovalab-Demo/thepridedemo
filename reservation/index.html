@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reservation | The Pride</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --bg:#0b0b0d;
+    --bg-soft:#111114;
+    --card:#17171c;
+    --card-2:#1d1d23;
+    --gold:#F4D06F;
+    --gold-deep:#c5a572;
+    --gold-soft:#ffe7a8;
+    --text:#ffffff;
+    --muted:rgba(255,255,255,0.74);
+    --line:rgba(255,255,255,0.08);
+    --shadow:0 24px 60px rgba(0,0,0,0.35);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    overflow-x:hidden;
+}
+
+img{
+    display:block;
+    width:100%;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+/* NAVBAR */
+
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    padding:20px 8%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    z-index:1000;
+    transition:.35s ease;
+}
+
+nav.scrolled{
+    background:rgba(10,10,12,0.92);
+    backdrop-filter:blur(14px);
+    box-shadow:0 12px 34px rgba(0,0,0,.4);
+    border-bottom:1px solid rgba(255,255,255,0.05);
+    padding:14px 8%;
+}
+
+.logo{
+    font-family:'Playfair Display',serif;
+    font-size:24px;
+    letter-spacing:2px;
+    color:#fff;
+}
+
+.nav-actions{
+    display:flex;
+    align-items:center;
+    gap:16px;
+}
+
+.nav-link{
+    color:#fff;
+    font-size:14px;
+    font-weight:500;
+    opacity:.84;
+    transition:.3s;
+}
+
+.nav-link:hover{
+    color:var(--gold);
+    opacity:1;
+}
+
+.nav-btn{
+    padding:11px 22px;
+    background:var(--gold);
+    color:#000;
+    border-radius:999px;
+    font-weight:700;
+    transition:.3s;
+    box-shadow:0 10px 25px rgba(244,208,111,0.16);
+}
+
+.nav-btn:hover{
+    transform:translateY(-3px);
+}
+
+.menu-toggle{
+    display:none;
+    font-size:26px;
+    cursor:pointer;
+    color:#fff;
+}
+
+.mobile-menu{
+    position:fixed;
+    top:78px;
+    left:0;
+    width:100%;
+    background:#111114;
+    display:none;
+    flex-direction:column;
+    padding:20px 8%;
+    z-index:998;
+    border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+.mobile-menu a{
+    color:#fff;
+    padding:14px 0;
+    border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+.mobile-menu.show{
+    display:flex;
+}
+
+/* HERO */
+
+.hero{
+    min-height:62vh;
+    padding:140px 8% 90px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+    background:
+        linear-gradient(180deg, rgba(0,0,0,0.38), rgba(0,0,0,0.74)),
+        url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    width:520px;
+    height:520px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(244,208,111,0.16), transparent 70%);
+    top:-120px;
+    left:-120px;
+}
+
+.hero::after{
+    content:"";
+    position:absolute;
+    width:360px;
+    height:360px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(244,208,111,0.10), transparent 70%);
+    bottom:-120px;
+    right:-80px;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    max-width:860px;
+}
+
+.eyebrow{
+    display:inline-block;
+    color:var(--gold-soft);
+    text-transform:uppercase;
+    letter-spacing:3px;
+    font-size:12px;
+    margin-bottom:16px;
+}
+
+.hero h1{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(42px, 7vw, 76px);
+    letter-spacing:-0.05em;
+    line-height:0.95;
+    margin-bottom:18px;
+}
+
+.hero p{
+    max-width:700px;
+    margin:0 auto;
+    color:rgba(255,255,255,0.82);
+    font-size:17px;
+    line-height:1.9;
+}
+
+/* SECTION */
+
+.section{
+    padding:100px 8%;
+}
+
+.wrapper{
+    max-width:1220px;
+    margin:auto;
+}
+
+.section-head{
+    text-align:center;
+    margin-bottom:56px;
+}
+
+.section-head h2{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(34px, 4vw, 50px);
+    margin-bottom:14px;
+    letter-spacing:-0.04em;
+}
+
+.section-head p{
+    max-width:720px;
+    margin:auto;
+    color:var(--muted);
+    line-height:1.85;
+}
+
+/* LAYOUT */
+
+.reservation-grid{
+    display:grid;
+    grid-template-columns:1fr 0.95fr;
+    gap:32px;
+    align-items:stretch;
+}
+
+/* FORM */
+
+.form-box{
+    background:linear-gradient(180deg, #151519, #111114);
+    border:1px solid var(--line);
+    border-radius:30px;
+    padding:34px;
+    box-shadow:var(--shadow);
+}
+
+.form-box h3{
+    font-family:'Playfair Display',serif;
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.form-box .intro{
+    color:var(--muted);
+    margin-bottom:26px;
+    line-height:1.8;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group.full{
+    grid-column:1 / -1;
+}
+
+.form-group label{
+    display:block;
+    font-size:13px;
+    margin-bottom:8px;
+    color:var(--gold);
+    text-transform:uppercase;
+    letter-spacing:1.2px;
+    font-weight:600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+    width:100%;
+    padding:14px 14px;
+    background:#1a1a1f;
+    border:1px solid #2a2a31;
+    color:#fff;
+    outline:none;
+    border-radius:16px;
+    font-size:14px;
+    transition:.3s ease;
+}
+
+.form-group textarea{
+    min-height:120px;
+    resize:vertical;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder{
+    color:rgba(255,255,255,0.35);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+    border-color:var(--gold-deep);
+    box-shadow:0 0 0 3px rgba(244,208,111,0.08);
+}
+
+.form-note{
+    margin-top:4px;
+    color:rgba(255,255,255,0.52);
+    font-size:13px;
+    line-height:1.7;
+}
+
+.btn-gold{
+    margin-top:12px;
+    padding:15px 30px;
+    background:var(--gold);
+    border:none;
+    color:#000;
+    font-weight:700;
+    cursor:pointer;
+    transition:0.3s;
+    border-radius:999px;
+    box-shadow:0 10px 24px rgba(244,208,111,0.16);
+    font-size:15px;
+}
+
+.btn-gold:hover{
+    background:#e6c78d;
+    transform:translateY(-3px);
+}
+
+/* INFO + IMAGE */
+
+.side-stack{
+    display:grid;
+    gap:22px;
+}
+
+.image-box{
+    overflow:hidden;
+    border-radius:30px;
+    min-height:380px;
+    box-shadow:var(--shadow);
+    border:1px solid var(--line);
+}
+
+.image-box img{
+    height:100%;
+    object-fit:cover;
+}
+
+.info-card{
+    background:linear-gradient(180deg, #151519, #111114);
+    border:1px solid var(--line);
+    border-radius:28px;
+    padding:28px;
+    box-shadow:var(--shadow);
+}
+
+.info-card h4{
+    font-family:'Playfair Display',serif;
+    font-size:28px;
+    margin-bottom:16px;
+}
+
+.info-row{
+    padding:14px 0;
+    border-bottom:1px solid rgba(255,255,255,0.06);
+}
+
+.info-row:last-child{
+    border-bottom:none;
+    padding-bottom:0;
+}
+
+.info-row strong{
+    display:block;
+    color:var(--gold);
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:1.2px;
+    margin-bottom:4px;
+}
+
+.info-row span{
+    color:var(--muted);
+    font-size:15px;
+    line-height:1.8;
+}
+
+/* EXTRA STRIP */
+
+.experience-strip{
+    margin-top:34px;
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:18px;
+}
+
+.strip-card{
+    background:#111114;
+    border:1px solid var(--line);
+    border-radius:22px;
+    padding:22px;
+    text-align:center;
+}
+
+.strip-card strong{
+    display:block;
+    color:var(--gold);
+    font-size:24px;
+    margin-bottom:6px;
+}
+
+.strip-card span{
+    color:var(--muted);
+    font-size:14px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:980px){
+    .reservation-grid{
+        grid-template-columns:1fr;
+    }
+
+    .experience-strip{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:820px){
+    nav{
+        padding:18px 6%;
+    }
+
+    nav.scrolled{
+        padding:12px 6%;
+    }
+
+    .nav-link,
+    .nav-btn{
+        display:none;
+    }
+
+    .menu-toggle{
+        display:block;
+    }
+
+    .section{
+        padding:90px 6%;
+    }
+
+    .hero{
+        padding:130px 6% 80px;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:640px){
+    .hero h1{
+        font-size:38px;
+    }
+
+    .form-box{
+        padding:24px;
+    }
+
+    .form-box h3{
+        font-size:32px;
+    }
+
+    .info-card{
+        padding:22px;
+    }
+}
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="logo">The Pride</div>
+
+    <div class="nav-actions">
+        <a href="../" class="nav-link">Home</a>
+        <a href="../menu/" class="nav-link">Menu</a>
+        <a href="../partyhall/" class="nav-link">Party Hall</a>
+        <a href="../about/" class="nav-link">About</a>
+        <a href="../reservation/" class="nav-btn">Reserve</a>
+        <div class="menu-toggle" id="menuToggle">☰</div>
+    </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+    <a href="../">Home</a>
+    <a href="../menu/">Menu</a>
+    <a href="../partyhall/">Party Hall</a>
+    <a href="../about/">About</a>
+    <a href="../reservation/">Reserve</a>
+</div>
+
+<section class="hero">
+    <div class="hero-content">
+        <span class="eyebrow">Reserve • Celebrate • Dine</span>
+        <h1>Reserve Your Table at The Pride</h1>
+        <p>Plan a relaxed dinner, a special date, or a memorable family evening in a setting designed for comfort, elegance, and exceptional service.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="wrapper">
+        <div class="section-head">
+            <span class="eyebrow">Reservation Desk</span>
+            <h2>Book an Experience, Not Just a Table</h2>
+            <p>Share your preferred date, time, and party size, and our team will help arrange a smooth, premium dining experience from the moment you arrive.</p>
+        </div>
+
+        <div class="reservation-grid">
+
+            <div class="form-box">
+                <h3>Reserve A Table</h3>
+                <p class="intro">Complete the form below and our team will contact you to confirm your reservation details.</p>
+
+                <form>
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" placeholder="email@gmail.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Mobile Number</label>
+                            <input type="tel" placeholder="+91 98765 43210" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Time</label>
+                            <select required>
+                                <option value="">Select Time</option>
+                                <option>12:00 PM</option>
+                                <option>1:00 PM</option>
+                                <option>2:00 PM</option>
+                                <option>7:00 PM</option>
+                                <option>8:00 PM</option>
+                                <option>9:00 PM</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Number of Persons</label>
+                            <select required>
+                                <option value="">Select</option>
+                                <option>1 Person</option>
+                                <option>2 Persons</option>
+                                <option>3 Persons</option>
+                                <option>4 Persons</option>
+                                <option>5+ Persons</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full">
+                            <label>Special Request</label>
+                            <textarea placeholder="Anniversary setup, birthday dinner, preferred seating, dietary notes..."></textarea>
+                        </div>
+
+                        <div class="form-group full">
+                            <button type="submit" class="btn-gold">Make A Reservation</button>
+                            <p class="form-note">Reservations are confirmed after availability review. For urgent same-day bookings, please contact us directly by phone.</p>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+
+            <div class="side-stack">
+                <div class="image-box">
+                    <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1974&auto=format&fit=crop" alt="Dining">
+                </div>
+
+                <div class="info-card">
+                    <h4>Reservation Details</h4>
+
+                    <div class="info-row">
+                        <strong>Dining Hours</strong>
+                        <span>Lunch: 12:00 PM – 3:00 PM<br>Dinner: 7:00 PM – 11:00 PM</span>
+                    </div>
+
+                    <div class="info-row">
+                        <strong>Phone Reservation</strong>
+                        <span>+91 7592470444</span>
+                    </div>
+
+                    <div class="info-row">
+                        <strong>Private Events</strong>
+                        <span>Birthday dinners, family gatherings, and premium private celebrations available on request.</span>
+                    </div>
+
+                    <div class="info-row">
+                        <strong>Location</strong>
+                        <span>Baripura Vidisha, Madhya Pradesh<br>AVS Residency Road, Inner Ring Rd</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="experience-strip">
+            <div class="strip-card">
+                <strong>Premium</strong>
+                <span>Elegant indoor dining with refined ambience</span>
+            </div>
+            <div class="strip-card">
+                <strong>Private</strong>
+                <span>Ideal for anniversaries, birthdays, and gatherings</span>
+            </div>
+            <div class="strip-card">
+                <strong>Curated</strong>
+                <span>Thoughtful service and a polished guest experience</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+const navbar = document.getElementById("navbar");
+window.addEventListener("scroll", function(){
+    navbar.classList.toggle("scrolled", window.scrollY > 50);
+});
+
+const menuToggle = document.getElementById("menuToggle");
+const mobileMenu = document.getElementById("mobileMenu");
+
+menuToggle.addEventListener("click", function(){
+    mobileMenu.classList.toggle("show");
+});
+
+mobileMenu.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => mobileMenu.classList.remove("show"));
+});
+</script>
+
+</body>
+</html>
