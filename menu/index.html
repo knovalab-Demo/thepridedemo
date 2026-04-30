@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu | The Pride</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0c0c0f;
+  --bg-soft:#111114;
+  --card:#17171c;
+  --card-2:#1d1d23;
+  --gold:#F4D06F;
+  --gold-soft:#ffe7a8;
+  --text:#ffffff;
+  --muted:rgba(255,255,255,0.72);
+  --line:rgba(255,255,255,0.08);
+  --shadow:0 24px 60px rgba(0,0,0,0.35);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+img{
+  display:block;
+  width:100%;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+.container{
+  width:min(100%, 1240px);
+  margin:auto;
+}
+
+.eyebrow{
+  display:inline-block;
+  color:var(--gold-soft);
+  text-transform:uppercase;
+  letter-spacing:3px;
+  font-size:12px;
+  margin-bottom:14px;
+}
+
+.section-head{
+  text-align:center;
+  margin-bottom:52px;
+}
+
+.section-head h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(34px, 4vw, 52px);
+  margin-bottom:14px;
+  letter-spacing:-0.04em;
+}
+
+.section-head p{
+  max-width:720px;
+  margin:auto;
+  color:var(--muted);
+  line-height:1.8;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  padding:20px 8%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(0,0,0,0.6);
+  backdrop-filter:blur(10px);
+  z-index:999;
+  transition:.35s;
+}
+
+.navbar.scrolled{
+  padding:14px 8%;
+  background:rgba(0,0,0,0.92);
+  box-shadow:0 12px 34px rgba(0,0,0,.4);
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+.logo{
+  font-family:'Playfair Display',serif;
+  font-size:24px;
+  letter-spacing:2px;
+  color:#fff;
+}
+
+.nav-links{
+  display:flex;
+  gap:28px;
+  align-items:center;
+}
+
+.nav-links a{
+  text-decoration:none;
+  color:#fff;
+  font-size:14px;
+  transition:.3s;
+  position:relative;
+}
+
+.nav-links a:not(.nav-btn)::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:0;
+  height:2px;
+  background:var(--gold);
+  transition:.3s;
+}
+
+.nav-links a:not(.nav-btn):hover::after{
+  width:100%;
+}
+
+.nav-links a:hover{
+  color:var(--gold);
+}
+
+.nav-btn{
+  padding:10px 22px;
+  background:var(--gold);
+  color:#000 !important;
+  border-radius:999px;
+  font-weight:700;
+  box-shadow:0 10px 25px rgba(244,208,111,0.16);
+}
+
+.nav-btn:hover{
+  transform:translateY(-3px);
+}
+
+.menu-toggle{
+  display:none;
+  font-size:26px;
+  cursor:pointer;
+  color:#fff;
+}
+
+.mobile-menu{
+  position:fixed;
+  top:78px;
+  left:0;
+  width:100%;
+  background:#111114;
+  display:none;
+  flex-direction:column;
+  padding:20px 8%;
+  z-index:998;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+.mobile-menu a{
+  color:#fff;
+  padding:14px 0;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+.mobile-menu.show{
+  display:flex;
+}
+
+/* ================= HERO ================= */
+
+.menu-hero{
+  min-height:56vh;
+  padding:150px 8% 100px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.42), rgba(0,0,0,0.75)),
+    url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1800&auto=format&fit=crop') center/cover;
+}
+
+.menu-hero::before{
+  content:"";
+  position:absolute;
+  width:520px;
+  height:520px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(244,208,111,0.16), transparent 70%);
+  top:-140px;
+  left:-120px;
+}
+
+.menu-hero::after{
+  content:"";
+  position:absolute;
+  width:360px;
+  height:360px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(244,208,111,0.10), transparent 70%);
+  bottom:-120px;
+  right:-80px;
+}
+
+.menu-hero-content{
+  position:relative;
+  z-index:2;
+  max-width:860px;
+}
+
+.menu-hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(44px, 7vw, 76px);
+  letter-spacing:-0.05em;
+  line-height:0.95;
+  margin-bottom:18px;
+}
+
+.menu-hero p{
+  max-width:720px;
+  margin:auto;
+  color:rgba(255,255,255,0.82);
+  line-height:1.9;
+  font-size:17px;
+}
+
+/* ================= TABS ================= */
+
+.menu-panel{
+  padding:90px 8% 40px;
+}
+
+.menu-tabs{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-bottom:42px;
+}
+
+.menu-tabs button{
+  padding:12px 24px;
+  border:none;
+  background:#17171c;
+  color:#fff;
+  border-radius:999px;
+  cursor:pointer;
+  transition:.3s;
+  font-weight:600;
+  border:1px solid rgba(255,255,255,0.06);
+}
+
+.menu-tabs button.active,
+.menu-tabs button:hover{
+  background:var(--gold);
+  color:#000;
+  transform:translateY(-2px);
+}
+
+/* ================= FEATURE STRIP ================= */
+
+.menu-feature-strip{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:18px;
+  margin-bottom:38px;
+}
+
+.menu-feature{
+  background:#111114;
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:22px;
+  text-align:center;
+}
+
+.menu-feature strong{
+  display:block;
+  color:var(--gold);
+  font-size:22px;
+  margin-bottom:6px;
+}
+
+.menu-feature span{
+  color:var(--muted);
+  font-size:14px;
+}
+
+/* ================= MENU GRID ================= */
+
+.menu-section{
+  display:none;
+}
+
+.menu-section.active{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:26px;
+}
+
+.menu-card{
+  background:linear-gradient(180deg, #151519, #111114);
+  border-radius:24px;
+  padding:22px;
+  text-align:left;
+  transition:.35s;
+  border:1px solid rgba(255,255,255,0.06);
+  box-shadow:var(--shadow);
+}
+
+.menu-card:hover{
+  transform:translateY(-8px);
+  border-color:rgba(244,208,111,0.34);
+}
+
+.menu-card img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  border-radius:18px;
+  margin-bottom:18px;
+}
+
+.menu-card h3{
+  font-family:'Playfair Display',serif;
+  font-size:28px;
+  margin-bottom:8px;
+}
+
+.menu-card p{
+  font-size:14px;
+  color:var(--muted);
+  margin-bottom:12px;
+}
+
+.price{
+  color:var(--gold);
+  font-weight:700;
+  font-size:18px;
+}
+
+/* ================= MENU CTA ================= */
+
+.menu-cta{
+  padding:70px 8% 110px;
+}
+
+.menu-cta-box{
+  max-width:1240px;
+  margin:auto;
+  border-radius:32px;
+  padding:56px 48px;
+  background:
+    linear-gradient(rgba(17,17,20,0.82), rgba(17,17,20,0.82)),
+    url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1600&auto=format&fit=crop') center/cover;
+  border:1px solid rgba(244,208,111,0.14);
+  box-shadow:var(--shadow);
+  text-align:center;
+}
+
+.menu-cta-box h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(32px, 4vw, 46px);
+  margin-bottom:14px;
+}
+
+.menu-cta-box p{
+  max-width:720px;
+  margin:0 auto 22px;
+}
+
+.menu-cta-box a{
+  display:inline-block;
+  padding:14px 30px;
+  border-radius:999px;
+  background:var(--gold);
+  color:#000;
+  font-weight:700;
+  transition:.3s;
+}
+
+.menu-cta-box a:hover{
+  transform:translateY(-3px);
+}
+
+/* ================= FOOTER ================= */
+
+.footer{
+  background:#0a0a0c;
+  padding:90px 8%;
+  text-align:center;
+  border-top:1px solid rgba(244,208,111,0.12);
+}
+
+.footer h2{
+  font-family:'Playfair Display',serif;
+  margin-bottom:18px;
+  font-size:clamp(30px, 4vw, 42px);
+}
+
+.footer p{
+  opacity:.66;
+  margin-bottom:18px;
+}
+
+.footer a{
+  color:var(--gold);
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:1020px){
+  .menu-section.active{
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+  }
+
+  .menu-feature-strip{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:768px){
+  .navbar{
+    padding:18px 6%;
+  }
+
+  .navbar.scrolled{
+    padding:12px 6%;
+  }
+
+  .nav-links{
+    display:none;
+  }
+
+  .menu-toggle{
+    display:block;
+  }
+
+  .menu-hero{
+    padding:130px 6% 80px;
+  }
+
+  .menu-hero h1{
+    font-size:38px;
+  }
+
+  .menu-panel,
+  .menu-cta,
+  .footer{
+    padding-left:6%;
+    padding-right:6%;
+  }
+
+  .menu-section.active{
+    grid-template-columns:1fr;
+  }
+
+  .menu-cta-box{
+    padding:40px 24px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar" id="navbar">
+  <div class="logo">THE PRIDE</div>
+
+  <div class="nav-links">
+    <a href="../">Home</a>
+    <a href="../reservation/">Reservation</a>
+    <a href="../partyhall/">Party Hall</a>
+    <a href="#" class="nav-btn">Menu</a>
+  </div>
+
+  <div class="menu-toggle" id="menuToggle">☰</div>
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="../">Home</a>
+  <a href="../reservation/">Reservation</a>
+  <a href="../partyhall/">Party Hall</a>
+  <a href="#">Menu</a>
+</div>
+
+<!-- HERO -->
+<section class="menu-hero">
+  <div class="menu-hero-content">
+    <span class="eyebrow">Curated Dining Selection</span>
+    <h1>Our Menu</h1>
+    <p>From indulgent breakfasts to elegant dinners and handcrafted desserts, every plate is prepared to bring comfort, flavour, and a refined dining experience to your table.</p>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu-panel">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Explore Categories</span>
+      <h2>Choose Your Course</h2>
+      <p>Browse through our carefully selected categories and discover flavours designed for every time of day.</p>
+    </div>
+
+    <div class="menu-feature-strip">
+      <div class="menu-feature">
+        <strong>Fresh</strong>
+        <span>Prepared with quality ingredients and thoughtful flavour balance</span>
+      </div>
+      <div class="menu-feature">
+        <strong>Curated</strong>
+        <span>A menu designed for premium dining and memorable occasions</span>
+      </div>
+      <div class="menu-feature">
+        <strong>Comforting</strong>
+        <span>Classic favourites served with a refined restaurant touch</span>
+      </div>
+    </div>
+
+    <div class="menu-tabs">
+      <button class="tab-btn active" onclick="showMenu('breakfast',this)">Breakfast</button>
+      <button class="tab-btn" onclick="showMenu('lunch',this)">Lunch</button>
+      <button class="tab-btn" onclick="showMenu('dinner',this)">Dinner</button>
+      <button class="tab-btn" onclick="showMenu('dessert',this)">Desserts</button>
+      <button class="tab-btn" onclick="showMenu('drinks',this)">Drinks</button>
+    </div>
+
+    <div id="breakfast" class="menu-section active"></div>
+    <div id="lunch" class="menu-section"></div>
+    <div id="dinner" class="menu-section"></div>
+    <div id="dessert" class="menu-section"></div>
+    <div id="drinks" class="menu-section"></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="menu-cta">
+  <div class="menu-cta-box">
+    <h2>Reserve Your Table for a Better Dining Experience</h2>
+    <p>Enjoy your favourites in an atmosphere designed for comfort, celebrations, and beautifully served meals.</p>
+    <a href="../reservation/">Book a Table</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<section class="footer">
+  <h2>Experience Fine Dining at The Pride</h2>
+  <p>Premium flavours • Elegant ambience • Unforgettable memories</p>
+  <p>© 2026 The Pride</p>
+</section>
+
+<script>
+window.addEventListener("scroll",function(){
+  document.getElementById("navbar").classList.toggle("scrolled",window.scrollY>50);
+});
+
+const menuItems = {
+  breakfast: [
+    {
+      name:"Pancakes",
+      desc:"Soft golden pancakes served warm with butter and maple drizzle.",
+      price:"₹299",
+      img:"https://images.unsplash.com/photo-1528207776546-365bb710ee93?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      name:"Omelette",
+      desc:"Fluffy eggs folded with herbs, vegetables, and a rich savoury finish.",
+      price:"₹249",
+      img:"https://images.unsplash.com/photo-1510693206972-df098062cb71?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      name:"French Toast",
+      desc:"Brioche-style toast with caramel notes and a soft buttery centre.",
+      price:"₹289",
+      img:"https://images.unsplash.com/photo-1484723091739-30a097e8f929?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      name:"Idli & Sambar",
+      desc:"Classic comfort served with aromatic sambar and fresh chutneys.",
+      price:"₹199",
+      img:"https://images.unsplash.com/photo-1668236543090-82eba5ee5976?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      name:"Masala Dosa",
+      desc:"Crisp dosa wrapped around a warm, flavourful potato filling.",
+      price:"₹229",
+      img:"https://images.unsplash.com/photo-1630383249896-424e482df921?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      name:"Croissant",
+      desc:"Buttery, flaky layers baked fresh for a light and elegant start.",
+      price:"₹189",
+      img:"https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=1200&auto=format&fit=crop"
+    }
+  ],
+  lunch: [
+    {
+      name:"Veg Biryani",
+      desc:"Fragrant rice layered with vegetables and subtle house spices.",
+      price:"₹349",
+      img:"https://images.unsplash.com/photo-1563379091339-03246963d51a?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      name:"Chicken Biryani",
+      desc:"Aromatic long-grain rice and tender chicken in a rich spice profile.",
+      price:"₹429",
+      img:"https://images.unsplash.com/photo-1701579231349-d7459c40919d?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      name:"Paneer Butter Masala",
+      desc:"Creamy tomato gravy with soft paneer cubes and balanced richness.",
+      price:"₹389",
+      img:"https://images.unsplash.com/photo-1631452180519-c014fe946bc7?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      name:"Dal Tadka",
+      desc:"Slow-cooked lentils finished with a warm, aromatic tempering.",
+      price:"₹259",
+      img:"https://images.unsplash.com/photo-1626500155537-93690c24099e?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      name:"Grilled Chicken",
+      desc:"Tender grilled chicken with smoky notes and a satisfying finish.",
+      price:"₹469",
+      img:"https://images.unsplash.com/photo-1527477396000-e27163b481c2?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      name:"Veg Thali",
+      desc:"A complete lunch platter with curated flavours and wholesome variety.",
+      price:"₹399",
+      img:"https://images.unsplash.com/photo-1613292443284-8d10ef9383fe?q=80&w=1200&auto=format&fit=crop"
+    }
+  ],
+  dinner: [
+    {
+      name:"Tandoori Chicken",
+      desc:"Charred edges, smoky aroma, and juicy spice-marinated chicken.",
+      price:"₹499",
+      img:"https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      name:"Lasagna",
+      desc:"Layered pasta baked with rich sauce, cheese, and comforting depth.",
+      price:"₹459",
+      img:"https://images.unsplash.com/photo-1619895092538-128341789043?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      name:"Steak",
+      desc:"A hearty signature main with refined seasoning and bold flavour.",
+      price:"₹699",
+      img:"https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      name:"Kebab Platter",
+      desc:"A mixed platter of grilled favourites designed for sharing.",
+      price:"₹649",
+      img:"https://images.unsplash.com/photo-1529006557810-274b9b2fc783?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      name:"Pizza",
+      desc:"Stone-baked pizza with crisp crust and premium toppings.",
+      price:"₹449",
+      img:"https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      name:"Seafood Platter",
+      desc:"A luxurious spread of seafood prepared for a premium dinner table.",
+      price:"₹799",
+      img:"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=1200&auto=format&fit=crop"
+    }
+  ],
+  dessert: [
+    {
+      name:"Brownie",
+      desc:"Warm chocolate brownie with a rich centre and indulgent finish.",
+      price:"₹199",
+      img:"https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      name:"Ice Cream",
+      desc:"Creamy scoops served chilled with elegant presentation.",
+      price:"₹169",
+      img:"https://images.unsplash.com/photo-1563805042-7684c019e1cb?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      name:"Gulab Jamun",
+      desc:"Soft, syrup-soaked dumplings served warm and comforting.",
+      price:"₹149",
+      img:"https://images.unsplash.com/photo-1601050690597-df0568f70950?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      name:"Cheesecake",
+      desc:"Smooth, rich cheesecake with a clean and creamy finish.",
+      price:"₹239",
+      img:"https://images.unsplash.com/photo-1533134242443-d4fd215305ad?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      name:"Tiramisu",
+      desc:"Classic layered dessert with soft coffee notes and elegance.",
+      price:"₹269",
+      img:"https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      name:"Rasmalai",
+      desc:"Delicate saffron milk dessert with a soft, luxurious texture.",
+      price:"₹189",
+      img:"https://images.unsplash.com/photo-1652279768124-ec3f3f94a639?q=80&w=1200&auto=format&fit=crop"
+    }
+  ],
+  drinks: [
+    {
+      name:"Cold Coffee",
+      desc:"Smooth, chilled coffee blended for a rich refreshing finish.",
+      price:"₹179",
+      img:"https://images.unsplash.com/photo-1461023058943-07fcbe16d735?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      name:"Mocktail",
+      desc:"Fresh fruit and citrus-based blends for a lively premium sip.",
+      price:"₹219",
+      img:"https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      name:"Fresh Lime Soda",
+      desc:"Cool, fizzy, and refreshing with bright citrus balance.",
+      price:"₹139",
+      img:"https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      name:"Mango Shake",
+      desc:"Thick, smooth mango blend served chilled and comforting.",
+      price:"₹189",
+      img:"https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      name:"Cappuccino",
+      desc:"A balanced coffee with creamy foam and café-style elegance.",
+      price:"₹169",
+      img:"https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      name:"Green Tea",
+      desc:"A calming warm cup for a lighter, more soothing finish.",
+      price:"₹129",
+      img:"https://images.unsplash.com/photo-1544787219-7f47ccb76574?q=80&w=1200&auto=format&fit=crop"
+    }
+  ]
+};
+
+function loadMenus(){
+  for(const category in menuItems){
+    const section = document.getElementById(category);
+    section.innerHTML = menuItems[category].map(item => `
+      <div class="menu-card">
+        <img src="${item.img}" alt="${item.name}">
+        <h3>${item.name}</h3>
+        <p>${item.desc}</p>
+        <div class="price">${item.price}</div>
+      </div>
+    `).join("");
+  }
+}
+
+function showMenu(category,btn){
+  document.querySelectorAll(".menu-section").forEach(sec=>sec.classList.remove("active"));
+  document.getElementById(category).classList.add("active");
+
+  document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
+}
+
+loadMenus();
+
+const navbar = document.getElementById("navbar");
+window.addEventListener("scroll",function(){
+  navbar.classList.toggle("scrolled",window.scrollY>50);
+});
+
+const menuToggle = document.getElementById("menuToggle");
+const mobileMenu = document.getElementById("mobileMenu");
+
+menuToggle.addEventListener("click", function(){
+  mobileMenu.classList.toggle("show");
+});
+
+mobileMenu.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => mobileMenu.classList.remove("show"));
+});
+</script>
+
+</body>
+</html>
