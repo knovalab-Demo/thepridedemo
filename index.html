@@ -12,7 +12,6 @@
   --bg:#0b0b0d;
   --bg-soft:#111114;
   --card:#17171c;
-  --card-2:#1d1d23;
   --gold:#F4D06F;
   --gold-soft:#ffe7a8;
   --text:#ffffff;
@@ -328,12 +327,11 @@ nav.scrolled{
 .about-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:34px;
+  gap:48px;
   align-items:center;
 }
 
 .about-image{
-  position:relative;
   min-height:520px;
   border-radius:30px;
   overflow:hidden;
@@ -345,35 +343,21 @@ nav.scrolled{
   object-fit:cover;
 }
 
+.about-copy{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
 .about-copy h2{
   font-size:clamp(34px, 4vw, 52px);
   margin-bottom:18px;
   letter-spacing:-0.04em;
+  line-height:1.04;
 }
 
 .about-copy p{
   margin-bottom:16px;
-}
-
-.about-points{
-  display:grid;
-  grid-template-columns:repeat(2, minmax(0, 1fr));
-  gap:16px;
-  margin-top:24px;
-}
-
-.about-point{
-  background:#17171c;
-  border:1px solid rgba(255,255,255,0.06);
-  border-radius:18px;
-  padding:18px;
-}
-
-.about-point strong{
-  display:block;
-  color:var(--gold);
-  margin-bottom:6px;
-  font-weight:600;
 }
 
 /* ================= MENU ================= */
@@ -790,7 +774,6 @@ nav.scrolled{
     grid-template-columns:1fr;
   }
 
-  .about-points,
   .party-features{
     grid-template-columns:1fr;
   }
@@ -906,25 +889,6 @@ nav.scrolled{
       <h2>A Dining Space Designed Around Taste, Comfort, and Elegance</h2>
       <p>At The Pride, we create more than meals. We create evenings that feel thoughtfully elevated. From the lighting and interiors to the rhythm of service and the detail on every plate, every part of the experience is designed to feel polished and welcoming.</p>
       <p>Whether you're here for a quiet dinner, a celebration with family, or a beautifully hosted event, our goal is simple: serve memorable food in an atmosphere that feels distinctly premium.</p>
-
-      <div class="about-points">
-        <div class="about-point">
-          <strong>Refined Ambience</strong>
-          <p>Comfortable luxury with a warm, intimate atmosphere.</p>
-        </div>
-        <div class="about-point">
-          <strong>Curated Menu</strong>
-          <p>Modern favourites, rich Indian classics, and chef-led specials.</p>
-        </div>
-        <div class="about-point">
-          <strong>Private Celebrations</strong>
-          <p>Thoughtfully hosted events for birthdays, gatherings, and dinners.</p>
-        </div>
-        <div class="about-point">
-          <strong>Attentive Service</strong>
-          <p>Professional hospitality that keeps the experience smooth and personal.</p>
-        </div>
-      </div>
     </div>
   </div>
 </section>
